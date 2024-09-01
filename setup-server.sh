@@ -24,6 +24,9 @@ sudo apt install ufw
 sudo ufw allow ssh
 sudo ufw enable
 
+# Install Apps
+sudo apt install git curl -yy
+
 echo "-------------------------------------------------"
 echo "Setup complete."
 echo "-------------------------------------------------"
