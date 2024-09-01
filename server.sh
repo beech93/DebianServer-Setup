@@ -1,8 +1,8 @@
 #!/bin/bash
 PS3='Debian Server Setup Scripts: '
-foods=("Setup Sudo" "Install Docker" "Exit")
-select fav in "${foods[@]}"; do
-    case $fav in
+choice=("Setup Sudo" "Install Docker" "Exit")
+select opt in "${choice[@]}"; do
+    case $opt in
         "Setup Sudo")
             echo "Setting up sudo"
             apt update
@@ -22,7 +22,6 @@ select fav in "${foods[@]}"; do
             user=$(getent passwd 1000 |  awk -F: '{ print $1}')
             sudo usermod -aG docker $USER
             echo "Docker setup complete. Please log out & log back in after exiting to use without sudo."
-        break
             ;;
 	"Exit")
 	    echo "Exiting"
