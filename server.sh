@@ -5,22 +5,23 @@ select opt in "${choice[@]}"; do
     case $opt in
         "Setup Sudo")
             echo "Setting up sudo"
-            apt update
-            apt install sudo -yy
-            user=$(getent passwd 1000 |  awk -F: '{ print $1}')
+            apt update > /dev/null 2>&1
+            apt install sudo -yy > /dev/null 2>&1
+            user=$(getent passwd 1000 |  awk -F: '{ print $1}') > /dev/null 2>&1
             echo "$user  ALL=(ALL:ALL)  ALL" >> /etc/sudoers
+            echo "Defaults rootpw" >> /etc/sudoers
             echo "Sudo setup complete."
             ;;
         "Install Docker")
             echo "Installing Docker"
-            curl -fsSL https://get.docker.com -o get-docker.sh > /dev/null
-            sudo sh get-docker.sh > /dev/null
-            COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4) > /dev/null
-            sudo curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose > /dev/null
-            sudo chmod +x /usr/local/bin/docker-compose > /dev/null
-            sudo curl -L https://raw.githubusercontent.com/docker/compose/${COMPOSE_VERSION}/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose > /dev/null
-            user=$(getent passwd 1000 |  awk -F: '{ print $1}') > /dev/null
-            sudo usermod -aG docker $USER > /dev/null
+            curl -fsSL https://get.docker.com -o get-docker.sh > /dev/null 2>&1
+            sudo sh get-docker.sh > /dev/null 2>&1
+            COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4) > /dev/null 2>&1
+            sudo curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose > /dev/null 2>&1
+            sudo chmod +x /usr/local/bin/docker-compose > /dev/null 2>&1
+            sudo curl -L https://raw.githubusercontent.com/docker/compose/${COMPOSE_VERSION}/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose > /dev/null 2>&1
+            user=$(getent passwd 1000 |  awk -F: '{ print $1}') > /dev/null 2>&1
+            sudo usermod -aG docker $USER > /dev/null 2>&1
             echo "Docker setup complete. Please log out & log back in after exiting to use without sudo."
             ;;
 	"Exit")
