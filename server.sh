@@ -1,3 +1,4 @@
+#!/bin/sh
 setup_sudo () {
     echo "Setting up sudo..."
     apt update > /dev/null 2>&1
