@@ -1,3 +1,3 @@
 # Debian-Setup
 
-Debian setup scripts
+Debian server setup scripts
