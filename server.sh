@@ -1,8 +1,8 @@
 #!/bin/sh
 setup_sudo () {
     echo "Setting up sudo..."
-    apt update > /dev/null 2>&1
-    apt install sudo -yy > /dev/null 2>&1
+    apt-get update > /dev/null 2>&1
+    apt-get install sudo -yy > /dev/null 2>&1
     user=$(getent passwd 1000 |  awk -F: '{ print $1}') > /dev/null 2>&1
     echo "$user  ALL=(ALL:ALL)  ALL" >> /etc/sudoers
     echo "Defaults rootpw" >> /etc/sudoers
@@ -26,7 +26,7 @@ install_docker () {
 
 setup_firewall () {
     echo "Setting up firewall.."
-    sudo apt install ufw > /dev/null 2>&1
+    sudo apt-get install ufw > /dev/null 2>&1
     sudo ufw allow ssh > /dev/null 2>&1
     sudo ufw enable
     echo "UFW enabled..."
@@ -34,7 +34,7 @@ setup_firewall () {
 
 install_software () {
     echo "Installing software..."
-    sudo apt install git
+    sudo apt-get install git
     echo "Software installed."
 }
 
