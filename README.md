@@ -1,6 +1,6 @@
 # DebianServer-Setup
 
-Simple shell script for setting up a Debian server. Install Sudo, Docker-Compose, and setup UFW quickly.
+Simple shell script for setting up a Debian server. Options to install Sudo, Docker-Compose, and setup UFW quickly.
 
 (Run as Superuser)
 ```bash
